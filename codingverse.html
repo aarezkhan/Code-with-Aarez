@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code With Aarez | Python Mastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
+        
+        :root {
+            --color-dark: #3A2D28;
+            --color-taupe: #A48374;
+            --color-sand: #CBAD8D;
+            --color-grey: #D1C7BD;
+            --color-light-bg: #F1EDE6;
+            --color-card-bg: #EBE3DB;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--color-light-bg);
+            color: var(--color-dark);
+        }
+        .serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+        .custom-shadow {
+            box-shadow: 0 20px 40px rgba(58, 45, 40, 0.05);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <header class="w-full text-center py-4 px-4 border-b border-[#D1C7BD] bg-[#EBE3DB]/50 backdrop-blur-md sticky top-0 z-50">
+        <p class="text-xs tracking-widest uppercase font-semibold text-[#A48374]">
+            Welcome to Code with Aarez · <span class="italic serif-title capitalize">designed by Aarezverse team with love</span>
+        </p>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center p-4 md:p-8 max-w-5xl mx-auto w-full">
+        
+        <div id="welcome-card" class="w-full bg-[#EBE3DB] p-8 md:p-12 rounded-3xl custom-shadow text-center space-y-8 border border-[#D1C7BD]/60">
+            <div class="space-y-3">
+                <span class="text-xs uppercase tracking-widest font-bold text-[#A48374] block">Python Architecture Suite</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-[#3A2D28] serif-title">
+                    Master Core to Advanced Python
+                </h1>
+                <p class="text-sm md:text-base text-[#A48374] max-w-xl mx-auto font-medium">
+                    An elegant, distraction-free curriculum built to transform your engineering logic. Learn step-by-step with structured real-time logic analysis.
+                </p>
+            </div>
+
+            <div id="onboarding-form" class="max-w-md mx-auto hidden pt-4 space-y-4">
+                <input type="text" id="student-name" placeholder="Enter your full name for credentials" 
+                       class="w-full px-5 py-4 rounded-xl bg-[#F1EDE6] border border-[#D1C7BD] text-[#3A2D28] placeholder-[#A48374] outline-none focus:border-[#A48374] transition font-medium text-center">
+                <button onclick="startCurriculum()" class="w-full py-4 bg-[#3A2D28] hover:bg-[#A48374] text-[#F1EDE6] rounded-xl font-bold tracking-wide transition uppercase text-xs">
+                    Initialize Terminal →
+                </button>
+            </div>
+
+            <button id="btn-get-started" onclick="revealOnboarding()" class="px-8 py-4 bg-[#3A2D28] hover:bg-[#A48374] text-[#F1EDE6] rounded-xl font-bold tracking-widest transition uppercase text-xs custom-shadow">
+                Get Started
+            </button>
+        </div>
+
+        <div id="course-dashboard" class="w-full grid grid-cols-1 md:grid-cols-3 gap-8 hidden items-start">
+            
+            <div class="md:col-span-2 bg-[#EBE3DB] border border-[#D1C7BD]/60 rounded-3xl p-6 md:p-8 space-y-6 custom-shadow">
+                <div class="flex justify-between items-center border-b border-[#D1C7BD] pb-4">
+                    <div>
+                        <span class="text-xs font-mono text-[#A48374] uppercase tracking-wider" id="lesson-index">MODULE 01</span>
+                        <h2 class="text-2xl font-bold serif-title text-[#3A2D28]" id="lesson-title">Python Fundamentals</h2>
+                    </div>
+                    <span class="text-xs font-bold bg-[#3A2D28] text-[#F1EDE6] px-3 py-1.5 rounded-full font-mono" id="score-counter">00 PTS</span>
+                </div>
+
+                <div class="prose max-w-none text-sm md:text-base text-[#3A2D28]/90 leading-relaxed space-y-4 whitespace-pre-line font-medium" id="lesson-content">
+                    </div>
+
+                <div class="p-4 bg-[#F1EDE6] border-l-4 border-[#CBAD8D] rounded-r-xl italic text-xs md:text-sm text-[#A48374]" id="joke-box">
+                    </div>
+
+                <div class="text-xs font-medium uppercase tracking-wider text-[#CBAD8D] pt-2" id="motivation-quote">
+                    "Code is like humor. When you have to explain it, it’s bad."
+                </div>
+
+                <button onclick="activateQuiz()" id="btn-action-panel" class="w-full py-4 bg-[#3A2D28] hover:bg-[#A48374] text-[#F1EDE6] rounded-xl font-bold tracking-wide transition uppercase text-xs">
+                    Launch Concept Assessment
+                </button>
+            </div>
+
+            <div id="quiz-sidebar" class="bg-[#3A2D28] text-[#F1EDE6] rounded-3xl p-6 space-y-6 shadow-xl hidden">
+                <div class="space-y-1">
+                    <span class="text-[10px] font-mono uppercase tracking-widest text-[#CBAD8D]">Verification Engine</span>
+                    <h3 class="text-lg font-bold font-mono">Evaluation Node</h3>
+                </div>
+                
+                <p id="quiz-question" class="text-sm leading-relaxed font-medium text-[#D1C7BD]">
+                    </p>
+
+                <div id="quiz-options" class="space-y-3">
+                    </div>
+            </div>
+        </div>
+
+        <div id="certificate-panel" class="w-full max-w-2xl bg-white p-8 md:p-12 rounded-2xl border-8 border-[#CBAD8D] text-center space-y-6 hidden relative custom-shadow">
+            <div class="absolute inset-4 border border-[#A48374]/30 pointer-events-none"></div>
+            <span class="text-xs tracking-widest uppercase font-mono text-[#A48374]">Credential Registry</span>
+            <h2 class="text-3xl md:text-5xl serif-title text-[#3A2D28]">Certificate of Mastery</h2>
+            <p class="text-sm italic text-[#A48374]">This document verifies that the system curriculum has been completed by</p>
+            <h3 id="cert-user-name" class="text-2xl md:text-4xl font-bold tracking-wide text-[#3A2D28] border-b-2 border-[#3A2D28] inline-block px-6 pb-2 my-4 font-mono">Student Name</h3>
+            <p class="text-sm max-w-md mx-auto text-[#A48374] font-medium">
+                For successfully navigating through core data structures, object encapsulation, operational parameters, and advanced engineering scopes in Python.
+            </p>
+            <div class="pt-8 flex justify-between items-center text-xs font-mono uppercase text-[#A48374] max-w-sm mx-auto">
+                <div>Verified Hub<br><span class="text-[#3A2D28] font-bold">Code With Aarez</span></div>
+                <div>Instructor Core<br><span class="text-[#3A2D28] font-bold">Aarez Khan</span></div>
+            </div>
+            <button onclick="window.print()" class="mt-6 px-6 py-2.5 bg-[#3A2D28] text-white rounded text-xs uppercase font-bold tracking-wider no-print">Print Document</button>
+        </div>
+
+    </main>
+
+    <footer class="w-full py-6 px-4 border-t border-[#D1C7BD] bg-[#EBE3DB]/30 flex flex-col sm:flex-row justify-between items-center text-xs font-medium text-[#A48374] gap-2">
+        <div>&copy; 2026 Code With Aarez. All architectural parameters verified.</div>
+        <div class="uppercase tracking-widest font-bold text-[#3A2D28]">By Aarez, Khan</div>
+    </footer>
+
+    <script>
+        // CLIENT PERSISTENT LOGIC VARIABLES
+        let userName = "";
+        let currentLessonIndex = 0;
+        let totalPoints = 0;
+
+        // JOKES ARRAY (ENGLISH CLEAN HUMOR)
+        const programmingJokes = [
+            "Joke: There are 10 types of people in the world: those who understand binary, and those who don't.",
+            "Joke: Why do programmers wear glasses? Because they can't C#!",
+            "Joke: A SQL query walks into a bar, walks up to two tables and asks, 'Can I join you?'",
+            "Joke: What is a programmer's favorite hangout place? Foo Bar.",
+            "Joke: local_variable walked into global_scope and realized it had no power here."
+        ];
+
+        // LESSON & ASSESSMENTS MAP SCHEMA
+        const courseData = [
+            {
+                title: "Python Setup & Syntax Basics",
+                module: "MODULE 01",
+                content: "Python is an interpreted, high-level, dynamically typed language. Variable declarations don't require an explicit primitive type map.\n\nExample:\n`x = 5` creates an integer mapping implicitly. Code blocks use indentation spacing instead of curly braces. Keep your definitions clean and un-nested.",
+                quote: "Simplicity is the soul of efficiency.",
+                question: "Which of the following defines a clean implicit variable initialization block in Python?",
+                options: ["int x = 5;", "x = 5", "var x = 5;", "let x = 5"],
+                correctIndex: 1
+            },
+            {
+                title: "Data Structuring (Lists & Tuples)",
+                module: "MODULE 02",
+                content: "Lists are dynamic mutable arrays enclosed in brackets `[]`. Tuples are immutable storage sequences mapped in parentheses `()`.\n\nUse Lists when you require active sequence modification; map arrays to Tuples for protected storage parameters that must never mutate inside runtime scopes.",
+                quote: "Data dominates. If you've chosen the right data structures, the code writes itself.",
+                question: "How do you define a completely immutable array/sequence block structure?",
+                options: ["my_structure = [1, 2, 3]", "my_structure = {1, 2, 3}", "my_structure = (1, 2, 3)", "my_structure = <1, 2, 3>"],
+                correctIndex: 2
+            },
+            {
+                title: "OOP Encapsulation & Decorators",
+                module: "MODULE 03",
+                content: "Advanced architecture maps objects via Classes. Encapsulation shields internal states using dual underscores.\n\nDecorators (`@staticmethod` or custom wrappers) allow you to inject logical functionality natively into functions without hard-modifying their structural components.",
+                quote: "Object-oriented code makes systems resilient to human logical errors.",
+                question: "Which pattern natively modifies execution parameters without editing the original function body definition?",
+                options: ["A Decorator", "An Instance Exception", "A Tuple Declaration", "A Global Namespace String"],
+                correctIndex: 0
+            }
+        ];
+
+        // INTERACTIVE SCREEN NAVIGATION
+        function revealOnboarding() {
+            document.getElementById('btn-get-started').classList.add('hidden');
+            document.getElementById('onboarding-form').classList.remove('hidden');
+        }
+
+        function startCurriculum() {
+            const nameInput = document.getElementById('student-name').value.trim();
+            if(!nameInput) {
+                alert("Please enter a professional credential name to unlock the terminal modules.");
+                return;
+            }
+            userName = nameInput;
+            document.getElementById('welcome-card').classList.add('hidden');
+            document.getElementById('course-dashboard').classList.remove('hidden');
+            renderLesson();
+        }
+
+        // CONTENT RENDER ENGINES
+        function renderLesson() {
+            const activeNode = courseData[currentLessonIndex];
+            
+            document.getElementById('lesson-index').innerText = activeNode.module;
+            document.getElementById('lesson-title').innerText = activeNode.title;
+            document.getElementById('lesson-content').innerText = activeNode.content;
+            document.getElementById('motivation-quote').innerText = `"${activeNode.quote}"`;
+            document.getElementById('score-counter').innerText = `${String(totalPoints).padStart(2, '0')} PTS`;
+            
+            // Randomize English Jokes display
+            document.getElementById('joke-box').innerText = programmingJokes[currentLessonIndex % programmingJokes.length];
+
+            // Reset action layouts
+            document.getElementById('quiz-sidebar').classList.add('hidden');
+            const actionBtn = document.getElementById('btn-action-panel');
+            actionBtn.innerText = "Launch Concept Assessment";
+            actionBtn.onclick = activateQuiz;
+            actionBtn.style.display = "block";
+        }
+
+        function activateQuiz() {
+            const activeNode = courseData[currentLessonIndex];
+            document.getElementById('quiz-sidebar').classList.remove('hidden');
+            document.getElementById('btn-action-panel').style.display = "none";
+            
+            document.getElementById('quiz-question').innerText = activeNode.question;
+            
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = "";
+            
+            activeNode.options.forEach((opt, idx) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = "w-full text-left p-3 rounded-lg bg-[#EBE3DB] text-[#3A2D28] text-xs font-semibold hover:bg-[#CBAD8D] transition";
+                optBtn.innerText = opt;
+                optBtn.onclick = () => verifyAnswer(idx);
+                optionsContainer.appendChild(optBtn);
+            });
+        }
+
+        function verifyAnswer(selectedIndex) {
+            const activeNode = courseData[currentLessonIndex];
+            if(selectedIndex === activeNode.correctIndex) {
+                totalPoints += 10;
+                alert("Assessment Verified: +10 Points added to your credential profile.");
+            } else {
+                alert(`Assessment Failed: Inaccurate logical path. The correct structure was: ${activeNode.options[activeNode.correctIndex]}`);
+            }
+
+            // Next State Logic Sequence
+            currentLessonIndex++;
+            if(currentLessonIndex < courseData.length) {
+                renderLesson();
+            } else {
+                triggerCompletion();
+            }
+        }
+
+        function triggerCompletion() {
+            document.getElementById('course-dashboard').classList.add('hidden');
+            document.getElementById('certificate-panel').classList.remove('hidden');
+            document.getElementById('cert-user-name').innerText = userName;
+        }
+    </script>
+</body>
+</html>
